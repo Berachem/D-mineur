@@ -72,7 +72,7 @@ def afficher_grille_complete(grille):
     fonction qui affiche la grille à la fin
 
     """
-    p="  "
+    p="   "
     for i in range(len(grille[0])):
         if i>9:
             p+=" "+str(i)
@@ -81,7 +81,10 @@ def afficher_grille_complete(grille):
     print(p)
     print("")
     for i in range(len(grille)):
-        s=""
+        if i<10:
+            s=" "
+        else:
+            s=""
         for j in range(len(grille[0])):
 
             if grille[i][j]==-1:
@@ -99,7 +102,7 @@ def afficher_grille(grille, revelee):
     pour la fonction afficher_grille_complete lorsqu'une case a la valeur True dans le tableau revelee et le                     caractère
 '?' lorsqu'elle a la valeur False.
     """
-    p="  "
+    p="   "
     for i in range(len(grille[0])):
         if i>9:
             p+=" "+str(i)
@@ -108,7 +111,10 @@ def afficher_grille(grille, revelee):
     print(p)
     print("")
     for i in range(len(grille)):
-        s=""
+        if i<10:
+            s=" "
+        else:
+            s=""
         for j in range(len(grille[0])):
 
             if revelee[i][j]==False:
@@ -175,46 +181,43 @@ def jeu(longueur, largeur, nb_mines):
 
     while True:
 
-        print("==================================")
+        print("==============================================================================")
         afficher_grille(grille, revelee)
-        print("==================================")
+        print("==============================================================================")
         x = int(input("Entrez une abscisse  : "))
         y = int(input("Entrez une ordonnée  : "))
         revelee = jouer(grille, revelee, y, x)
 
         if defaite(grille, revelee):
-            print("==================================")
+            print("==============================================================================")
             print("Vous avez perdu malheureusement ! :(")
-            print("==================================")
+            print("==============================================================================")
             break
         elif victoire(grille, revelee):
-            print("==================================")
+            print("==============================================================================")
             print("Vous avez gagné ! :)")
-            print("==================================")
+            print("==============================================================================")
             break
 
 
     afficher_grille_complete(grille)
-    print("==================================")
+    print("==============================================================================")
 
 def menu():
     """
     Accueil du joueur dans le jeu, en l'invitant à choisir un niveau de difficulté (débutant,
     intermédiaire ou expert) ou une partie personalisée
     """
-    reponse = input("Entrez un niveau de difficulté (Débutant / Intermédiaire / Expert / Partie perso)")
+    reponse = input("Entrez un niveau de difficulté (Débutant / Intermédiaire / Expert / Partie perso) :")
 
     if reponse=="Débutant":
-        jeu(3,3,3)
+        jeu(8,8,10)
     elif reponse=="Intermédiaire":
-        jeu(5,5,4)
+        jeu(16,16,40)
     elif reponse=="Expert":
-        jeu(15,15,15)
+        jeu(16,32,99)
     elif reponse=="Partie perso":
         longueur = int(input("Entrez la longueur que vous voulez :"))
         largeur = int(input("Entrez la largeur que vous voulez :"))
         nb_mines = int(input("Entrez le nombre de mines que vous voulez :"))
         jeu(longueur, largeur, nb_mines)
-
-
-
