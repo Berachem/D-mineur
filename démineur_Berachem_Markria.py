@@ -33,6 +33,7 @@ def nombre_voisins(grille, y,x):
         cpt+=1
     if y>0 and grille[y-av][x]==-1:
         cpt+=1
+
     if x>0 and y>0 and grille[y-av][x-av]==-1:
         cpt+=1
     if y>0 and x<len(grille[y])-1 and grille[y-av][x+av]==-1:
@@ -221,3 +222,4 @@ def menu():
         largeur = int(input("Entrez la largeur que vous voulez :"))
         nb_mines = int(input("Entrez le nombre de mines que vous voulez :"))
         jeu(longueur, largeur, nb_mines)
+menu()
